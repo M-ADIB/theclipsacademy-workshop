@@ -10,6 +10,14 @@
   const videos = [...document.querySelectorAll('video')];
   const hero = document.querySelector('#hero-video');
   const heroControl = document.querySelector('.film-control');
+  const resultVideo = document.querySelector('#result-video');
+  const resultControl = document.querySelector('.result-control');
+  let resultReady = false;
+  let resultPaused = false;
+  let resultManualPlay = false;
+  resultVideo.controls = false;
+  resultControl.hidden = false;
+  resultControl.tabIndex = -1;
   const inView = new Set();
   let heroPaused = false;
   let heroManualPlay = false;
@@ -24,11 +32,34 @@
   function syncVideos() {
     videos.forEach(video => {
       const isHero = video === hero;
-      const allowed = isHero ? !heroPaused && (!reduced.matches || heroManualPlay) : !reduced.matches && !tickerHeld;
+      const allowed = isHero
+        ? !heroPaused && (!reduced.matches || heroManualPlay)
+        : video === resultVideo
+          ? resultReady && !resultPaused && (!reduced.matches || resultManualPlay)
+          : !reduced.matches && !tickerHeld;
       if (allowed && !document.hidden && inView.has(video)) video.play().catch(() => { if (isHero) syncControl(); });
       else video.pause();
     });
   }
+  function syncResultControl() {
+    resultControl.setAttribute('aria-pressed', String(!resultVideo.paused));
+    resultControl.setAttribute('aria-label', `${resultVideo.paused ? 'Play' : 'Pause'} agency reel`);
+    resultControl.firstElementChild.textContent = resultVideo.paused ? '▷' : 'Ⅱ';
+  }
+  function setResultReady(ready) {
+    if (resultReady === ready) return;
+    resultReady = ready;
+    resultControl.tabIndex = ready ? 0 : -1;
+    syncVideos();
+  }
+  resultVideo.addEventListener('play', syncResultControl);
+  resultVideo.addEventListener('pause', syncResultControl);
+  resultVideo.addEventListener('error', () => { resultControl.hidden = true; });
+  resultControl.addEventListener('click', () => {
+    resultPaused = !resultVideo.paused;
+    resultManualPlay = !resultPaused;
+    syncVideos();
+  });
   function syncMotion() {
     root.classList.toggle('motion', !reduced.matches);
     root.classList.toggle('page-hidden', document.hidden);
@@ -80,13 +111,14 @@
     const { width, height, cards } = assemblyGeometry;
     const wirePull = ease(clamp((progress - .05) / .4));
     ingredients.forEach((card, index) => {
-      const merge = ease(clamp((progress - .12 - index * .025) / .46));
+      const stagger = index / Math.max(1, ingredients.length - 1) * .09;
+      const merge = ease(clamp((progress - .12 - stagger) / .46));
       const remaining = 1 - merge;
-      const { x, y, rotate } = cards[index];
+      const { x, y, rotate, scale } = cards[index];
       card.style.setProperty('--x', x * remaining);
       card.style.setProperty('--y', y * remaining);
       card.style.setProperty('--r', rotate * remaining);
-      card.style.setProperty('--s', 1 - merge * .52);
+      card.style.setProperty('--s', scale * (1 - merge * .52));
       card.style.setProperty('--o', 1 - clamp((merge - .62) / .38));
       const other = cards[(index + 2) % cards.length];
       const startX = width / 2 + x * remaining;
@@ -96,18 +128,16 @@
       const bend = (index % 2 ? 65 : -65) * (1 - wirePull);
       wires[index].setAttribute('d', `M ${startX} ${startY} C ${width / 2 + bend} ${startY}, ${endX} ${height / 2 + bend}, ${endX} ${endY}`);
     });
-    const result = ease(clamp((progress - .56) / .22));
-    const finish = ease(clamp((progress - .56) / .22));
+    const result = ease(clamp((progress - .59) / .22));
     const resultSize = Math.min(1, (height - 20) / assemblyGeometry.resultHeight);
     assembly.style.setProperty('--wire-opacity', .32 * (1 - clamp((progress - .48) / .2)));
     assembly.style.setProperty('--center-opacity', 1 - clamp((progress - .30) / .25));
     assembly.style.setProperty('--result-opacity', result);
     assembly.style.setProperty('--result-scale', (.55 + result * .45) * resultSize);
-    assembly.style.setProperty('--type-offset', (1 - finish) * 100);
-    assembly.style.setProperty('--ring-turn', finish * 70);
     assembly.style.setProperty('--assembly-progress', progress);
-    assembly.classList.toggle('is-assembled', progress > .76);
-    const status = progress > .76 ? '5 components. One great reel.' : '5 components. One connected method.';
+    assembly.classList.toggle('is-assembled', progress >= .81);
+    setResultReady(progress >= .81);
+    const status = progress >= .81 ? 'Every detail. One great reel.' : 'Many decisions. One connected method.';
     if (assemblyStatus.textContent !== status) assemblyStatus.textContent = status;
   }
 
@@ -129,20 +159,28 @@
     assembly.classList.toggle('assembly-animated', !reduced.matches && innerHeight >= 640);
     const width = assemblyField.clientWidth;
     const height = assemblyField.clientHeight;
+    const columns = innerWidth <= 760 ? 2 : 4;
+    const rows = Math.ceil(ingredients.length / columns);
+    const slotWidth = width / columns;
+    const slotHeight = height / rows;
     assemblyGeometry = {
       width, height, resultHeight: assemblyResult.offsetHeight,
-      cards: ingredients.map(card => {
-        const xLimit = Math.max(0, (width - card.offsetWidth * 1.16) / 2 - 5);
-        const yLimit = Math.max(0, (height - card.offsetHeight * 1.16) / 2 - 10);
-        const x = Number(card.dataset.x) * width;
-        const y = Number(card.dataset.y) * height;
-        return { x: Math.sign(x) * Math.min(Math.abs(x), xLimit), y: Math.sign(y) * Math.min(Math.abs(y), yLimit), rotate: Number(card.dataset.rotate) };
+      cards: ingredients.map((card, index) => {
+        const rotate = Number(card.dataset.rotate) * (columns === 2 ? .55 : 1);
+        const radians = Math.abs(rotate) * Math.PI / 180;
+        const rotatedWidth = card.offsetWidth * Math.cos(radians) + card.offsetHeight * Math.sin(radians);
+        const rotatedHeight = card.offsetHeight * Math.cos(radians) + card.offsetWidth * Math.sin(radians);
+        const scale = Math.min(1, (slotWidth - 12) / rotatedWidth, (slotHeight - 9) / rotatedHeight);
+        const x = (index % columns + .5) * slotWidth - width / 2;
+        const y = (Math.floor(index / columns) + .5) * slotHeight - height / 2;
+        return { x, y, rotate, scale };
       })
     };
     lastAssemblyProgress = -1;
     if (!assembly.classList.contains('assembly-animated')) {
       assembly.classList.remove('is-assembled');
-      assemblyStatus.textContent = '5 components. One great reel.';
+      assemblyStatus.textContent = 'Every detail. One great reel.';
+      setResultReady(true);
     }
     requestAssembly();
   }
@@ -176,7 +214,7 @@
     syncVideos();
   }
   ['pointerenter','pointerleave','focusin','focusout'].forEach(event => ticker.addEventListener(event, holdTicker));
-  reduced.addEventListener('change', () => { heroManualPlay = false; syncMotion(); });
+  reduced.addEventListener('change', () => { heroManualPlay = false; resultManualPlay = false; syncMotion(); });
   document.addEventListener('visibilitychange', syncMotion);
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
     document.querySelectorAll('.magnetic').forEach(button => {
