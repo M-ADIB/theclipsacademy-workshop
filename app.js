@@ -49,7 +49,7 @@
       });
       syncVideos();
     }, { threshold: .05 });
-    document.querySelectorAll('video,.word-ticker,.portfolio-ticker,.day-row').forEach(el => activity.observe(el));
+    document.querySelectorAll('video,.word-ticker,.portfolio-ticker').forEach(el => activity.observe(el));
     const navObserver = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) document.querySelectorAll('.nav a').forEach(a => {
         if (a.hash === `#${entry.target.id}`) a.setAttribute('aria-current', 'location');
