@@ -1,4 +1,4 @@
-import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs';
+import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=launch-now-1';
 import { mountCountdown } from './countdown.mjs';
 
 const ladder = document.querySelector('.price-ladder');
