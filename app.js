@@ -106,19 +106,5 @@
       button.addEventListener('pointerleave', () => { button.firstElementChild.style.transform = ''; });
     });
   }
-  const dialog = document.querySelector('#booking-dialog');
-  document.querySelector('[data-booking]').addEventListener('click', () => {
-    dialog.showModal();
-    document.body.classList.add('dialog-open');
-  });
-  const closeDialog = () => dialog.close();
-  document.querySelector('.dialog-close').addEventListener('click', closeDialog);
-  document.querySelector('.dialog-done').addEventListener('click', closeDialog);
-  dialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
-  dialog.addEventListener('click', event => {
-    if (event.target !== dialog) return;
-    const rect = dialog.getBoundingClientRect();
-    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeDialog();
-  });
   syncMotion();
 })();

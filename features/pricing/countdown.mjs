@@ -11,7 +11,7 @@ export function countdownState(deadline, now = Date.now()) {
   };
 }
 
-export function mountCountdown(element) {
+export function mountCountdown(element, now = Date.now) {
   const label = element.querySelector('.countdown-label');
   const units = element.querySelector('.countdown-units');
   const fields = ['days', 'hours', 'minutes', 'seconds'];
@@ -26,7 +26,7 @@ export function mountCountdown(element) {
     return value;
   });
   function update() {
-    const state = countdownState(element.dataset.countdown);
+    const state = countdownState(element.dataset.countdown, now());
     if (state.status === 'invalid') {
       units.hidden = true;
       return false;
@@ -41,11 +41,7 @@ export function mountCountdown(element) {
     fields.forEach((field, index) => { values[index].textContent = String(state[field]).padStart(2, '0'); });
     return true;
   }
-  if (update()) {
-    const timer = setInterval(() => { if (!update()) clearInterval(timer); }, 1000);
-  }
-}
-
-if (typeof document !== 'undefined') {
-  document.querySelectorAll('[data-countdown]').forEach(mountCountdown);
+  let timer;
+  if (update()) timer = setInterval(() => { if (!update()) clearInterval(timer); }, 1000);
+  return () => clearInterval(timer);
 }
