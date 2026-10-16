@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { validateCatalog } from '../features/pricing/catalog.mjs';
-const catalog = (time, stage, ticket_amount) => ({ status: 'open', server_time: time, stage, ticket_amount, currency: 'usd' });
+const catalog = (time, stage, ticket_amount) => ({ status: 'open', server_time: time, stage, ticket_amount, currency: 'usd', setup_ready: true, checkout_available: true });
 for (const [time, stage, amount] of [
   ['2026-10-18T05:00:00Z', 'early', 4700],
   ['2026-10-22T19:59:59Z', 'early', 4700],
@@ -16,4 +16,8 @@ test('no ticket price is displayed before launch or after the campaign', () => {
 });
 test('stale stage, old prices, wrong currency and malformed catalogs fail closed', () => {
   for (const raw of [catalog('2026-10-23T00:00:00Z','early',4700),catalog('2026-10-18T06:00:00Z','early',1900),{...catalog('2026-10-18T06:00:00Z','early',4700),currency:'aed'},null,{}, {status:'prelaunch',server_time:'2026-10-18T05:00:00Z'}]) assert.throws(()=>validateCatalog(raw));
+});
+
+test('incomplete backend setup does not advertise an available checkout', () => {
+  assert.throws(() => validateCatalog({...catalog('2026-10-18T06:00:00Z','early',4700),setup_ready:false}));
 });
