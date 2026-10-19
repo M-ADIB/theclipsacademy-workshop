@@ -1,5 +1,17 @@
 (() => {
   'use strict';
+  const switcher = document.querySelector('.path-switch');
+  if (switcher) {
+    const buttons = [...switcher.querySelectorAll('button')];
+    const select = selected => buttons.forEach(button => {
+      const active = button === selected;
+      button.setAttribute('aria-pressed', String(active));
+      document.getElementById(button.getAttribute('aria-controls')).hidden = !active;
+    });
+    buttons.forEach(button => button.addEventListener('click', () => select(button)));
+    select(buttons[0]);
+    switcher.hidden = false;
+  }
   const arabic = document.documentElement.lang === 'ar';
   const number = new Intl.NumberFormat(arabic ? 'ar' : 'en-US');
   const labels = arabic

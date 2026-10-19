@@ -1,0 +1,87 @@
+/* A shorter page with one visual idea per section. */
+.hero{padding-top:0}
+.hero-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(220px,.7fr);align-items:center;gap:5%;padding-block:62px 54px;max-width:1440px;margin-inline:auto}
+.hero .hero-eyebrow{margin-bottom:25px;font-size:11px}
+.hero h1{font-size:clamp(48px,5.8vw,88px);line-height:1.08;letter-spacing:-.025em}
+.hero-logo-line{display:flex;align-items:center;gap:.22em;margin-top:.06em}
+.headline-claude{width:4.05em;height:auto;flex:none;max-width:none}
+.hero .hero-copy{max-width:470px;margin-top:26px}
+.hero .hero-copy .hero-subheading{font-size:18px;line-height:1.55;letter-spacing:0;margin-bottom:24px}
+.hero .hero-details{margin-top:28px}
+.hero .hero-event{display:block;border:0;background:none;box-shadow:none;border-radius:0;padding:0;margin:0;font-size:13px;line-height:1.5;max-width:none}
+.hero .hero-language{font-size:12px;margin-top:7px;color:#c1beb9;line-height:1.5}
+.hero .word-ticker{padding:9px 0}.hero .word-track>span{font-size:22px}
+.hero-companion{position:relative;width:100%;aspect-ratio:1;max-width:380px;justify-self:center;display:grid;place-items:center;isolation:isolate}
+.companion-clawd{width:67%;height:auto;filter:drop-shadow(0 14px 24px #0003);transform:rotate(-6deg)}
+.companion-shadow{position:absolute;width:40%;height:10px;bottom:16%;border-radius:50%;background:#0006;filter:blur(8px);z-index:-1}
+.companion-orbit{position:absolute;inset:4%;border:1px solid #ffffff20;border-radius:50%;transform:rotate(-24deg) scaleY(.72);z-index:-1}
+.companion-chip{position:absolute;z-index:1;font-size:12px;line-height:1;background:#ffffff08;border:1px solid #ffffff30;border-radius:6px;padding:10px 14px;color:#eeeeeccc;backdrop-filter:blur(12px)}
+.chip-skills{top:12%;inset-inline-start:3%;transform:rotate(-8deg)}.chip-prompt{top:19%;inset-inline-end:-1%;transform:rotate(7deg)}.chip-brand{bottom:13%;inset-inline-end:8%;transform:rotate(-5deg)}
+.motion .hero-companion.is-visible .companion-clawd{animation:companion-float 5s ease-in-out infinite}
+.motion .hero-companion.is-visible .companion-chip{animation:chip-float 6s ease-in-out infinite}.motion .hero-companion.is-visible .chip-prompt{animation-delay:-2s}.motion .hero-companion.is-visible .chip-brand{animation-delay:-4s}
+.page-hidden .hero-companion *{animation-play-state:paused!important}
+@keyframes companion-float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-13px) rotate(3deg)}}
+@keyframes chip-float{50%{translate:0 -6px}}
+.who{padding-block:0;background:#e6e6e2;border-bottom:1px solid var(--line)}
+.who .who-grid{margin:0;gap:0;grid-template-columns:repeat(3,minmax(0,1fr))}
+.who .who-grid li{display:block;padding:25px 28px;border:0;border-radius:0;background:none}
+.who .who-grid li:first-child{padding-inline-start:0}.who .who-grid li+li{border-inline-start:1px solid var(--line)}
+.who .who-grid h3{font-size:19px;line-height:1.3;letter-spacing:0;margin:0 0 6px}
+.who .who-grid p{font-size:13px;color:var(--muted);line-height:1.5}
+.method,.who+.method{padding-block:64px}
+.method .section-top,.work .section-top{margin-bottom:26px}
+.method .section-heading h2,.work .section-heading h2{font-size:clamp(32px,4vw,60px)}
+.method>.section-heading{margin-bottom:32px}
+.editing-paths{margin-top:46px;padding-top:34px}
+.paths-heading{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.paths-heading h2{font-size:clamp(22px,2.2vw,34px);line-height:1.2;letter-spacing:-.02em}
+.path-switch{display:flex;border:1px solid #09090924;border-radius:30px;padding:4px;gap:4px;flex-shrink:0}
+.path-switch[hidden],.path-row[hidden]{display:none}
+.path-switch button{font-size:12px;min-height:40px;padding:9px 17px;border-radius:24px;background:transparent;color:var(--muted);transition:background .2s,color .2s}
+.path-switch button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.path-rows{margin-top:24px}
+.path-row{grid-template-columns:minmax(180px,.55fr) minmax(0,1.5fr);gap:35px;align-items:start}
+.path-copy{border:0;background:none;padding:20px 0;border-radius:0;position:relative}
+.path-copy h3{font-size:25px}.path-copy p{font-size:15px;line-height:1.6;max-width:280px;margin-top:12px}
+.path-character{width:70px;height:70px;object-fit:contain;margin-top:24px;transition:transform .3s}
+.path-copy:hover .path-character{transform:rotate(-8deg) translateY(-3px)}
+.demo{box-shadow:0 12px 35px #00000014}.beat-sheet{max-height:520px}
+.work{padding-block:52px 34px}.work-stats{margin-bottom:26px}.work-stats strong{font-size:clamp(40px,5.4vw,78px);letter-spacing:-.03em}.work-stats li{padding-top:20px}.work-stats b{font-size:10px;margin-top:12px}
+.tickets{padding-top:48px}.ticket-includes{line-height:1.5}
+html[lang="ar"] .hero h1{font-size:clamp(42px,5.7vw,82px);line-height:1.35;letter-spacing:0}
+html[lang="ar"] .hero-logo-line{gap:.24em}.hero-logo-line img{direction:ltr}
+html[lang="ar"] .headline-claude{width:3.6em}
+html[lang="ar"] .hero .hero-subheading{font-size:20px;line-height:1.8}
+html[lang="ar"] .hero .hero-event{font-size:15px}html[lang="ar"] .hero .hero-language{font-size:15px}
+html[lang="ar"] .companion-chip{font-size:16px}
+html[lang="ar"] .who .who-grid h3{font-size:21px;line-height:1.5}html[lang="ar"] .who .who-grid p{font-size:16px;line-height:1.6}
+html[lang="ar"] .method .section-heading h2,html[lang="ar"] .work .section-heading h2{font-size:clamp(32px,4vw,58px);line-height:1.5}
+html[lang="ar"] .paths-heading h2{font-size:30px;line-height:1.6}html[lang="ar"] .path-switch button{font-size:15px}
+html[lang="ar"] .path-copy h3{font-size:27px}html[lang="ar"] .path-copy p{font-size:17px}
+html[lang="ar"] .work-stats li{padding-block:20px 6px}html[lang="ar"] .work-stats b{font-size:14px}
+@media(max-width:1000px){.hero-layout{grid-template-columns:minmax(0,1.6fr) minmax(170px,.7fr);gap:22px;padding-block:45px}.hero h1{font-size:5.9vw}.hero .hero-copy .hero-subheading{font-size:16px}.companion-chip{font-size:10px;padding:8px 10px}.path-row{grid-template-columns:1fr}.path-copy{padding:0;display:block;padding-inline-end:85px}.path-copy p{max-width:580px}.path-character{position:absolute;inset-inline-end:0;top:0;width:58px;height:58px;margin:0}}
+@media(max-width:760px){
+ .hero-layout{grid-template-columns:minmax(0,1fr) 75px;gap:0;padding-block:36px 32px;position:relative}
+ .hero-content{grid-column:1/-1;grid-row:1}.hero-companion{grid-column:2;grid-row:1;align-self:end;max-width:75px;aspect-ratio:1;margin-bottom:48px;pointer-events:none}
+ .companion-clawd{width:100%}.companion-chip,.companion-orbit,.companion-shadow{display:none}
+ .hero .hero-eyebrow{font-size:9px;margin-bottom:19px}.hero h1{font-size:8.7vw;line-height:1.13;letter-spacing:-.025em}
+ .hero .headline-claude{width:4.02em}.hero .hero-copy{margin-top:22px;max-width:100%}.hero .hero-copy .hero-subheading{font-size:15px;line-height:1.6;margin-bottom:21px;max-width:330px}
+ .hero .hero-details{margin-top:24px;padding-inline-end:65px}.hero .hero-event{font-size:10px;line-height:1.7}.hero .hero-language{font-size:10px;line-height:1.6}
+ .hero .word-track>span{font-size:17px}.hero .word-ticker{padding-block:9px}
+ .who .who-grid{grid-template-columns:1fr}.who .who-grid li,.who .who-grid li:first-child{padding:14px 0;display:grid;grid-template-columns:100px 1fr;align-items:baseline;gap:14px}.who .who-grid li+li{border-inline-start:0;border-top:1px solid var(--line)}
+ .who .who-grid h3{font-size:14px;margin:0}.who .who-grid p{font-size:12px}
+ .method,.who+.method{padding-block:38px}.method .section-heading h2,.work .section-heading h2{font-size:7.9vw}.method>.section-heading{margin-bottom:28px}
+ .editing-paths{margin-top:35px;padding-top:28px}.paths-heading{display:block}.paths-heading h2{font-size:24px}.path-switch{margin-top:17px;width:fit-content}.path-switch button{font-size:12px;padding-inline:16px}
+ .path-rows{margin-top:22px;gap:22px}.path-row{gap:20px}.path-copy h3{font-size:22px}.path-copy p{font-size:13px}.path-character{width:46px;height:46px}.path-copy{padding-inline-end:60px}.beat-sheet{max-height:540px}
+ .work{padding-block:38px 28px}.work-stats{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:24px}.work-stats li,.work-stats li+li{padding:18px 8px 4px;border:0}.work-stats li+li{border-inline-start:1px solid #ffffff26}.work-stats li:first-child{padding-inline-start:0}.work-stats strong{font-size:36px}.work-stats b{font-size:8px;line-height:1.5;letter-spacing:.02em;margin-top:9px}
+ html[lang="ar"] .hero h1{font-size:9vw;line-height:1.5}.hero-logo-line{margin-top:0}html[lang="ar"] .hero .headline-claude{width:3.7em}
+ html[lang="ar"] .hero .hero-subheading{font-size:17px;line-height:1.85}html[lang="ar"] .hero .hero-event,html[lang="ar"] .hero .hero-language{font-size:12px}
+ html[lang="ar"] .who .who-grid h3{font-size:16px}html[lang="ar"] .who .who-grid p{font-size:14px}
+ html[lang="ar"] .method .section-heading h2,html[lang="ar"] .work .section-heading h2{font-size:7.7vw}
+ html[lang="ar"] .paths-heading h2{font-size:25px}html[lang="ar"] .path-switch button{font-size:14px}html[lang="ar"] .path-copy h3{font-size:24px}html[lang="ar"] .path-copy p{font-size:15px}
+ html[lang="ar"] .work-stats li,html[lang="ar"] .work-stats li+li{padding:18px 8px 4px;border:0}html[lang="ar"] .work-stats li+li{border-inline-start:1px solid #ffffff26}html[lang="ar"] .work-stats b{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.hero-companion *{animation:none!important}}
+
+.workflow-input-tools>img{width:28px;height:28px;object-fit:contain}
+.motion .path-character.is-visible{animation:clawd-bob 4s ease-in-out infinite}.page-hidden .path-character{animation-play-state:paused!important}

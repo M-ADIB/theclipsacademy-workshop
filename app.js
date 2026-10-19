@@ -82,7 +82,7 @@
       });
       syncVideos();
     }, { threshold: .05 });
-    document.querySelectorAll('video,.word-ticker,.portfolio-ticker,.hero-toolkit,.edit-workflow').forEach(el => activity.observe(el));
+    document.querySelectorAll('video,.word-ticker,.portfolio-ticker,.hero-companion,.edit-workflow,.path-character').forEach(el => activity.observe(el));
   } else {
     document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('in'));
   }
