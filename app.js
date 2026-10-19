@@ -1,6 +1,14 @@
 (() => {
   'use strict';
   const root = document.documentElement;
+  const arabic = root.lang === 'ar';
+  const languageLink = document.querySelector('.language-link');
+  const languagePath = languageLink.getAttribute('href');
+  function syncLanguageLink() {
+    languageLink.setAttribute('href', languagePath + location.hash);
+  }
+  syncLanguageLink();
+  addEventListener('hashchange', syncLanguageLink);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const group = document.querySelector('.portfolio-group');
   const duplicate = group.cloneNode(true);
@@ -35,7 +43,9 @@
   }
   function syncResultControl() {
     resultControl.setAttribute('aria-pressed', String(!resultVideo.paused));
-    resultControl.setAttribute('aria-label', `${resultVideo.paused ? 'Play' : 'Pause'} agency reel`);
+    resultControl.setAttribute('aria-label', arabic
+      ? (resultVideo.paused ? 'تشغيل فيديو الوكالة' : 'إيقاف فيديو الوكالة مؤقتاً')
+      : `${resultVideo.paused ? 'Play' : 'Pause'} agency reel`);
     resultControl.firstElementChild.textContent = resultVideo.paused ? '▷' : 'Ⅱ';
   }
   function setResultReady(ready) {
@@ -72,7 +82,7 @@
       });
       syncVideos();
     }, { threshold: .05 });
-    document.querySelectorAll('video,.word-ticker,.portfolio-ticker').forEach(el => activity.observe(el));
+    document.querySelectorAll('video,.word-ticker,.portfolio-ticker,.hero-toolkit').forEach(el => activity.observe(el));
   } else {
     document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('in'));
   }
@@ -87,7 +97,9 @@
     requestAnimationFrame(() => { header.classList.toggle('is-scrolled', scrollY > 20); pending = false; });
   }, { passive: true });
   hero.addEventListener('error', () => {
-    hero.setAttribute('aria-label', 'AI editing film poster. Video is currently unavailable.');
+    hero.setAttribute('aria-label', arabic
+      ? 'صورة فيديو المونتاج بالذكاء الاصطناعي. الفيديو غير متاح حالياً.'
+      : 'AI editing film poster. Video is currently unavailable.');
   });
   function holdTicker() {
     tickerHeld = ticker.matches(':hover') || ticker.matches(':focus-within');

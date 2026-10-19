@@ -1,0 +1,87 @@
+/* Arabic uses its own proportions and connected lettering, not Latin tracking. */
+body,h1,h2,h3{font-family:Tajawal,Arial,sans-serif}
+html[lang="ar"] body *{letter-spacing:normal}
+body{line-height:1.7}
+h1,h2,h3{font-weight:700}
+p{line-height:1.8}
+.heading-line{white-space:normal;text-wrap:balance}
+.hero h1{font-size:clamp(40px,5.1vw,84px);line-height:1.3;max-width:1100px}
+.hero:before{background:linear-gradient(270deg,rgba(9,9,9,.88),rgba(9,9,9,.73) 45%,rgba(9,9,9,.38)),linear-gradient(0deg,rgba(9,9,9,.4),rgba(9,9,9,.12))}
+.hero-eyebrow{font-size:12px;font-weight:700;flex-wrap:wrap;row-gap:8px}
+.hero-copy{max-width:500px}
+.hero-copy>p:first-child{font-size:20px;line-height:1.8}
+.hero-event{font-size:16px;max-width:none}
+.hero-language{font-size:16px}
+.hero-foot{font-size:12px}
+.button{font-size:17px;line-height:1.4}
+.header .nav-cta{font-size:15px}
+.button .arrow{transform:scaleX(-1)}
+.button:hover .arrow{transform:scaleX(-1) translate(2px,-2px)}
+.skip-link{left:auto;right:10px}
+.eyebrow{font-size:12px;font-weight:700}
+.section-top .small{font-size:14px;text-align:end}
+h2,.method .section-heading h2,.work .section-heading h2,.ticket-copy h2{font-size:clamp(34px,4.3vw,66px);line-height:1.4}
+.section-heading>p,.work .section-heading>p{font-size:17px;line-height:1.9;max-width:330px}
+.method .section-heading>p{color:var(--muted)}
+.section-heading>h2{min-width:0}
+.method-steps h3{font-size:26px;line-height:1.6}
+.method-steps p{font-size:18px;line-height:1.8}
+.step-number{font-size:19px;line-height:2.1}
+.method-result strong{font-size:24px;line-height:1.6}
+.method-result figcaption .eyebrow{font-size:11px}
+/* Keep the seamless video strip in its original coordinate direction. */
+.portfolio-ticker,.word-ticker{direction:ltr}
+.word-track>span{direction:rtl;font-size:clamp(22px,2.3vw,33px);line-height:1.4}
+.work-bottom{font-size:12px}
+.work-bottom>span{font-size:11px}
+.ticket-copy>p{font-size:18px;line-height:1.8}
+.ticket-card-top>.eyebrow{font-size:12px;max-width:180px;line-height:1.7}
+.ticket-sticker{font-size:12px;transform:rotate(-8deg);line-height:1.7;white-space:nowrap}
+.ticket-sticker b{font-size:19px}
+.ticket-price{gap:20px;align-items:center}
+.ticket-price>span{font-size:96px;line-height:1.2;margin-left:0;direction:ltr;unicode-bidi:isolate}
+.ticket-price.is-pending>span{font-size:46px;direction:rtl}
+.ticket-price>div{font-size:12px;padding-bottom:0}
+.ticket-price b{font-size:15px}
+.price-bar>span{font-family:PolySans,Arial,sans-serif}
+.price-label{font-size:13px;line-height:1.7}
+.ticket-includes li{padding-left:0;padding-right:23px;font-size:15px;line-height:1.8}
+.ticket-includes li:before{left:auto;right:0;content:"↖"}
+.ticket-schedule{font-size:13px;line-height:1.8;align-items:baseline}
+.checkout-note,.addon-note{font-size:13px;line-height:1.8}
+.countdown-label{font-size:17px;line-height:1.8}
+.countdown-unit strong{font-size:42px;line-height:1.4;direction:ltr;text-align:right}
+.countdown-unit span{font-size:14px}
+.ticket-card-bottom{font-size:11px;line-height:1.7}
+.footer>span,.footer>.text-link{font-size:13px}
+@media(max-width:1100px){.hero-copy>p:first-child{font-size:18px}.section-heading{gap:30px}.section-heading>p,.work .section-heading>p{font-size:16px;max-width:290px}.ticket-includes li{font-size:14px}.hero-copy .button{font-size:16px}}
+@media(max-width:760px){
+  .hero h1{font-size:clamp(27px,7.5vw,54px);line-height:1.5}
+  .mobile-heading-line{display:block}
+  .hero-eyebrow{font-size:10px;gap:6px;margin-bottom:20px}
+  .hero-copy>p:first-child{font-size:17px;line-height:1.85}
+  .hero-event{font-size:13px;max-width:330px;line-height:1.9;margin-top:18px}
+  .hero-language{font-size:14px}
+  .hero-foot{font-size:10px}
+  .header .nav-cta{font-size:13px;min-height:40px;padding:9px 12px}
+  .hero-copy .button,.booking-button{font-size:15px;min-height:44px;padding:10px 17px}
+  .section-top .eyebrow{font-size:10px}
+  .section-top .small{font-size:12px;max-width:150px}
+  h2,.method .section-heading h2,.work .section-heading h2,.ticket-copy h2{font-size:clamp(29px,8vw,52px);line-height:1.45}
+  .section-heading>p,.work .section-heading>p{font-size:16px;max-width:460px;line-height:1.9}
+  .method-steps li{padding:18px;gap:14px}
+  .method-steps h3{font-size:22px}
+  .method-steps p{font-size:16px}
+  .method-result strong{font-size:22px}
+  .ticket-copy>p{font-size:17px}
+  .ticket-card-top>.eyebrow{font-size:11px;max-width:150px}
+  .ticket-price>span{font-size:86px}
+  .ticket-price>div{font-size:11px}
+  .ticket-price b{font-size:14px}
+  .ticket-includes li{font-size:14px}
+  .ticket-schedule{font-size:12px}
+  .checkout-note,.addon-note{font-size:12px}
+  .ticket-card-bottom{font-size:10px}
+  .footer>span,.footer>.text-link{font-size:12px}
+}
+@media(max-width:380px){.hero h1{font-size:7.5vw}.hero-eyebrow{font-size:9px}.hero-copy>p:first-child{font-size:16px}.header .nav-cta{font-size:12px;padding-inline:10px}.ticket-price{gap:14px}.ticket-price>span{font-size:76px}.ticket-price.is-pending>span{font-size:38px}.price-label{font-size:12px}}

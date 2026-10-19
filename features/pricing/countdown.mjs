@@ -1,3 +1,5 @@
+import { pricingCopy } from './copy.mjs?v=bilingual-1';
+
 export function countdownState(deadline, now = Date.now()) {
   const target = Date.parse(deadline);
   if (!Number.isFinite(target) || !Number.isFinite(now)) return { status: 'invalid' };
@@ -12,6 +14,7 @@ export function countdownState(deadline, now = Date.now()) {
 }
 
 export function mountCountdown(element, now = Date.now) {
+  const copy = pricingCopy(document.documentElement.lang);
   const label = element.querySelector('.countdown-label');
   const units = element.querySelector('.countdown-units');
   const fields = ['days', 'hours', 'minutes', 'seconds'];
@@ -20,7 +23,7 @@ export function mountCountdown(element, now = Date.now) {
     unit.className = 'countdown-unit';
     const value = document.createElement('strong');
     const name = document.createElement('span');
-    name.textContent = field[0].toUpperCase() + field.slice(1);
+    name.textContent = copy.units[field];
     unit.append(value, name);
     units.append(unit);
     return value;

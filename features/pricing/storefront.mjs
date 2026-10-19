@@ -1,5 +1,8 @@
 import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=launch-now-1';
-import { mountCountdown } from './countdown.mjs';
+import { mountCountdown } from './countdown.mjs?v=bilingual-1';
+import { pricingCopy } from './copy.mjs?v=bilingual-1';
+
+const copy = pricingCopy(document.documentElement.lang);
 
 const ladder = document.querySelector('.price-ladder');
 const price = document.querySelector('.ticket-price');
@@ -31,8 +34,8 @@ function unavailable(message) {
   disposeCountdown();
   ladder.hidden = true;
   price.classList.add('is-pending');
-  price.querySelector(':scope>span').textContent = 'CHECK';
-  price.querySelector('b').textContent = 'See checkout for availability';
+  price.querySelector(':scope>span').textContent = copy.check;
+  price.querySelector('b').textContent = copy.availability;
   note.textContent = message;
   countdown.replaceChildren();
 }
@@ -49,29 +52,29 @@ async function refresh() {
     if (catalog.status === 'prelaunch') {
       ladder.hidden = true;
       price.classList.add('is-pending');
-      price.querySelector(':scope>span').textContent = 'SOON';
-      price.querySelector('b').textContent = 'Booking opens October 18';
-      note.textContent = 'Registration opens October 18 at 9am Dubai time.';
-      renderCountdown(catalog.deadline, 'Registration opens in', 'Registration is opening. Please check checkout.', catalog.serverNow);
+      price.querySelector(':scope>span').textContent = copy.soon;
+      price.querySelector('b').textContent = copy.opens;
+      note.textContent = copy.registration;
+      renderCountdown(catalog.deadline, copy.registrationCountdown, copy.registrationEnded, catalog.serverNow);
     } else if (catalog.status === 'open') {
       ladder.hidden = false;
       price.classList.remove('is-pending');
       price.querySelector(':scope>span').textContent = `$${catalog.stage.amount / 100}`;
-      price.querySelector('b').textContent = catalog.stage.label;
+      price.querySelector('b').textContent = copy.stages[catalog.stage.code];
       ladder.querySelectorAll('li').forEach(item => item.classList.toggle('current', item.dataset.stage === catalog.stage.code));
-      ladder.setAttribute('aria-label', `Ticket prices: ${STAGES.map(s => `$${s.amount / 100}`).join(', ')}. Current ticket $${catalog.stage.amount / 100}.`);
-      note.textContent = 'Ticket only. Optional extras are added at checkout.';
-      renderCountdown(catalog.deadline, catalog.stage.code === 'final' ? 'Campaign ends in' : `$${catalog.stage.amount / 100} price increases in`, catalog.stage.code === 'final' ? 'The campaign has ended.' : 'Pricing is being updated. Please check checkout.', catalog.serverNow);
+      ladder.setAttribute('aria-label', copy.prices(STAGES, catalog.stage.amount));
+      note.textContent = copy.ticketOnly;
+      renderCountdown(catalog.deadline, catalog.stage.code === 'final' ? copy.campaignCountdown : copy.increaseCountdown(catalog.stage.amount), catalog.stage.code === 'final' ? copy.campaignEnded : copy.updating, catalog.serverNow);
       const og = document.querySelector('meta[property="og:description"]');
-      if (og) og.content = `Live AI editing workshop on Zoom, November 1 at 7pm Dubai time. Current ticket $${catalog.stage.amount / 100}. Recordings and skills are optional extras.`;
+      if (og) og.content = copy.description(catalog.stage.amount);
     } else {
-      unavailable('Online booking is currently unavailable.');
+      unavailable(copy.unavailable);
     }
     const untilBoundary = catalog.deadline ? Date.parse(catalog.deadline) - catalog.serverNow : 60000;
     refreshTimer = setTimeout(refresh, Math.max(1000, Math.min(60000, untilBoundary + 100)));
   } catch {
     if (version !== requestVersion || stopped) return;
-    unavailable('Prices could not be loaded. Please check checkout or try again shortly.');
+    unavailable(copy.loadFailed);
     refreshTimer = setTimeout(refresh, 15000);
   }
 }
