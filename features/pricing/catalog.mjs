@@ -17,11 +17,13 @@ export function validateCatalog(raw) {
     if (serverNow >= Date.parse(OPENS_AT)) throw new Error('Pricing is being updated.');
     return { status: 'prelaunch', serverNow, deadline: OPENS_AT };
   }
-  if (raw.status === 'open' && (raw.setup_ready !== true || raw.checkout_available !== true)) throw new Error('Checkout is temporarily unavailable.');
+  if (raw.status === 'open' && raw.setup_ready !== true) throw new Error('Checkout is temporarily unavailable.');
   if (raw.status === 'unavailable') return { status: 'unavailable', serverNow };
   const stage = STAGES.find(s => serverNow < Date.parse(s.end));
   if (serverNow < Date.parse(OPENS_AT) || !stage || raw.stage !== stage.code || raw.ticket_amount !== stage.amount || raw.currency !== 'usd') {
     throw new Error('Pricing is being updated.');
   }
-  return { status: 'open', serverNow, stage, deadline: stage.end };
+  const boundaryNear=serverNow>Date.parse(stage.end)-31*60000;
+  if(!boundaryNear && raw.checkout_available!==true)throw new Error('Checkout is temporarily unavailable.');
+  return { status: boundaryNear?'paused':'open', serverNow, stage, deadline: stage.end, resumes:stage.code==='final'?null:stage.end };
 }

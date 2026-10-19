@@ -1,6 +1,6 @@
-import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=launch-now-1';
+import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=funnel-1';
 import { mountCountdown } from './countdown.mjs?v=bilingual-1';
-import { pricingCopy } from './copy.mjs?v=bilingual-1';
+import { pricingCopy } from './copy.mjs?v=funnel-1';
 
 const copy = pricingCopy(document.documentElement.lang);
 
@@ -56,6 +56,10 @@ async function refresh() {
       price.querySelector('b').textContent = copy.opens;
       note.textContent = copy.registration;
       renderCountdown(catalog.deadline, copy.registrationCountdown, copy.registrationEnded, catalog.serverNow);
+    } else if (catalog.status === 'paused') {
+      unavailable(catalog.resumes ? copy.paused : copy.pausedFinal);
+      price.querySelector(':scope>span').textContent=catalog.resumes?copy.pauseTitle:copy.closed;
+      renderCountdown(catalog.deadline,catalog.resumes?copy.resumes:copy.existingExpiry,copy.campaignEnded,catalog.serverNow);
     } else if (catalog.status === 'open') {
       ladder.hidden = false;
       price.classList.remove('is-pending');
@@ -63,7 +67,7 @@ async function refresh() {
       price.querySelector('b').textContent = copy.stages[catalog.stage.code];
       ladder.querySelectorAll('li').forEach(item => item.classList.toggle('current', item.dataset.stage === catalog.stage.code));
       ladder.setAttribute('aria-label', copy.prices(STAGES, catalog.stage.amount));
-      note.textContent = copy.ticketOnly;
+      note.textContent = `${copy.ticketOnly} ${copy.checkoutCutoff}`;
       renderCountdown(catalog.deadline, catalog.stage.code === 'final' ? copy.campaignCountdown : copy.increaseCountdown(catalog.stage.amount), catalog.stage.code === 'final' ? copy.campaignEnded : copy.updating, catalog.serverNow);
       const og = document.querySelector('meta[property="og:description"]');
       if (og) og.content = copy.description(catalog.stage.amount);
