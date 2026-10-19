@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eeeeec">
-  <meta name="description" content="Learn the AI editing skills and workflows built by an agency that has edited thousands of videos. A live 3-hour intensive in English and Arabic from The Clips Academy.">
-  <meta property="og:title" content="The Clips Academy | AI Editing Intensive">
+  <meta name="description" content="Edit Reels with Claude: a live 3-hour workshop in English and Arabic for agency owners, editors and complete beginners. Learn to edit on-brand reels faster, with one prompt or frame by frame.">
+  <meta property="og:title" content="The Clips Academy | Edit Reels with Claude">
   <meta property="og:description" content="Thousands of agency edits, translated into AI skills and workflows. Learn the method in a live 3-hour intensive. In English and Arabic. Live on Zoom, November 1, 2026 at 7pm Dubai time.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://theclips.academy/">
@@ -17,12 +17,14 @@
   <meta property="og:locale:alternate" content="ar_AE">
   <meta property="og:image" content="https://theclips.academy/assets/hero-poster.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <title>The Clips Academy | AI Editing Intensive</title>
+  <title>The Clips Academy | Edit Reels with Claude</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preload" href="assets/polysans.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="style.css?v=claude-workflow-1">
+  <link rel="stylesheet" href="omar.css?v=omar-1">
   <link rel="stylesheet" href="workflow.css?v=claude-workflow-1">
   <script src="app.js?v=claude-workflow-1" defer></script>
+  <script src="omar.js?v=omar-1" defer></script>
   <script type="module" src="features/pricing/storefront.mjs?v=bilingual-1"></script>
 </head>
 <body>
@@ -36,12 +38,12 @@
   <main id="main">
     <section class="hero section" id="top" aria-labelledby="hero-title">
       <div class="hero-backdrop" aria-hidden="true"><video id="hero-video" src="assets/hero-film.mp4" poster="assets/hero-poster.jpg" muted loop playsinline preload="metadata"></video></div>
-      <div class="eyebrow hero-eyebrow" data-load><span class="live-dot" aria-hidden="true"></span><span>THE AI EDITING INTENSIVE</span><span class="eyebrow-divider"></span><span>LIVE. 3 HOURS.</span></div>
-      <h1 id="hero-title"><span class="heading-line" data-load style="--delay:.08s">LEARN AI EDITING</span><span class="heading-line" data-load style="--delay:.16s">PRODUCE <span class="accent">4×</span> AS</span><span class="heading-line" data-load style="--delay:.24s">MANY VIDEOS</span></h1>
-      <div class="hero-details"><p class="hero-event">November 1, 2026 · 7pm Dubai time · Live on Zoom</p><p class="hero-language"><span aria-hidden="true">EN / ع</span> Available in both English and Arabic.</p></div>
+      <div class="eyebrow hero-eyebrow" data-load><span class="live-dot" aria-hidden="true"></span><span>LIVE WORKSHOP</span><span class="eyebrow-divider"></span><span>3 HOURS</span></div>
+      <h1 id="hero-title"><span class="heading-line" data-load style="--delay:.08s">LEARN HOW TO EDIT</span><span class="heading-line" data-load style="--delay:.16s">WITH CLAUDE.</span><span class="heading-line accent" data-load style="--delay:.24s">THE BRANDED WAY.</span></h1>
+      <div class="hero-details"><p class="hero-event" data-load style="--delay:.32s"><span class="event-date"><span class="live-dot" aria-hidden="true"></span>November 1, 2026</span><span class="event-detail">7pm Dubai time</span><span class="event-detail">Live on Zoom</span></p><p class="hero-language"><span aria-hidden="true">EN / ع</span> Available in both English and Arabic.</p></div>
       <div class="hero-bottom">
         <div class="hero-copy" data-load style="--delay:.4s">
-          <p class="hero-subheading">Create on-brand videos in a fraction of the time with our agency’s AI skills, prompts, and&nbsp;workflows.</p>
+          <p class="hero-subheading"><strong class="hero-promise">On brand. In minutes. So you can post more.</strong>A live 3-hour workshop where you’ll learn to edit Instagram and TikTok reels with Claude, using the same skills and prompts our agency uses every&nbsp;day.</p>
           <a href="https://os.theclips.academy/workshop/checkout" class="button button-primary magnetic"><span>Join Workshop</span><span class="arrow" aria-hidden="true">↗</span></a>
         </div>
         <div class="hero-toolkit" role="group" aria-label="AI tools in the workshop" data-load style="--delay:.48s">
@@ -49,11 +51,16 @@
           <div class="tool-card tool-card-chatgpt"><span class="chatgpt-avatar"><img src="assets/chatgpt-symbol.svg" width="56" height="56" alt=""></span><span class="tool-name" lang="en" dir="ltr">ChatGPT</span></div>
         </div>
       </div>
-      <div class="hero-foot"><span>FOR EDITORS. FOR AGENCY OWNERS.</span></div>
-      <div class="word-ticker" aria-hidden="true"><div class="word-track"><span>EDIT FASTER. CREATE MORE. MAKE IT YOURS. <i>↗</i> </span><span>EDIT FASTER. CREATE MORE. MAKE IT YOURS. <i>↗</i> </span><span>EDIT FASTER. CREATE MORE. MAKE IT YOURS. <i>↗</i> </span><span>EDIT FASTER. CREATE MORE. MAKE IT YOURS. <i>↗</i> </span></div></div>
+      <div class="hero-foot"><span>FOR AGENCY OWNERS. FOR EDITORS. FOR COMPLETE BEGINNERS.</span></div>
+      <div class="word-ticker" aria-hidden="true"><div class="word-track"><span>EDIT FASTER. STAY ON BRAND. POST MORE. <i>↗</i> </span><span>EDIT FASTER. STAY ON BRAND. POST MORE. <i>↗</i> </span><span>EDIT FASTER. STAY ON BRAND. POST MORE. <i>↗</i> </span><span>EDIT FASTER. STAY ON BRAND. POST MORE. <i>↗</i> </span></div></div>
+    </section>
+    <section class="who section" id="who" aria-labelledby="who-title">
+      <div class="section-top" data-reveal><span class="eyebrow">01 / WHO IT’S FOR</span></div>
+      <div class="section-heading"><h2 id="who-title" data-reveal><span class="heading-line">IF YOU MAKE REELS,</span><span class="heading-line accent">THIS IS FOR YOU.</span></h2><p data-reveal>No editing experience needed. Just a laptop and a&nbsp;clip.</p></div>
+      <ul class="who-grid" aria-label="Who the workshop is for"><li data-reveal style="--delay:0.00s"><span class="step-number" aria-hidden="true">01</span><h3>Agency owners</h3><p class="who-line">Make more client reels without growing your team.</p><p class="who-get"><b>You’ll get</b>A repeatable way to keep every client’s reels on brand, whoever does the editing.</p></li><li data-reveal style="--delay:0.08s"><span class="step-number" aria-hidden="true">02</span><h3>Editors</h3><p class="who-line">Spend less time cutting. Take on more work.</p><p class="who-get"><b>You’ll get</b>Claude skills that handle cuts, captions and sound, so you can focus on the creative.</p></li><li data-reveal style="--delay:0.16s"><span class="step-number" aria-hidden="true">03</span><h3>Complete beginners</h3><p class="who-line">Never edited a video? Start here.</p><p class="who-get"><b>You’ll get</b>Simple prompts that turn a phone clip into a finished reel. No editing software needed.</p></li></ul>
     </section>
     <section class="method section" id="method" aria-labelledby="method-title">
-      <div class="section-top"><span class="eyebrow">01 / HOW IT WORKS</span></div>
+      <div class="section-top"><span class="eyebrow">02 / HOW IT WORKS</span></div>
       <div class="section-heading"><h2 id="method-title"><span class="heading-line">YOU FILM IT.</span><span class="heading-line accent">CLAUDE EDITS IT.</span></h2><p>Your footage, with the right prompt, tools, and assets. Claude handles the full edit.</p></div>
       <ol class="edit-workflow" aria-label="From your recording to a finished reel with Claude">
         <li class="workflow-stage workflow-capture">
@@ -79,15 +86,99 @@
           <figure class="method-result"><div class="workflow-scene"><div class="result-reel"><video id="result-video" src="assets/work-01.mp4" poster="assets/work-01.jpg" muted loop playsinline controls preload="none" aria-label="An actual edited reel from The Clips Agency portfolio"></video><button class="result-control" aria-label="Play agency reel" aria-pressed="false" hidden><span aria-hidden="true">▷</span></button></div></div><figcaption><p class="workflow-caption">Cuts, captions, and sound. All together.</p><span class="workflow-example">EXAMPLE FROM THE CLIPS AGENCY</span></figcaption></figure>
         </li>
       </ol>
+      <div class="editing-paths" aria-labelledby="paths-title"><div class="section-heading"><h2 id="paths-title"><span class="heading-line">ONE WORKSHOP.</span><span class="heading-line accent">TWO WAYS TO EDIT.</span></h2><p>Choose speed or control. You’ll learn&nbsp;both.</p></div>
+<div class="path-rows">
+        <article class="path-row">
+          <div class="path-copy" data-reveal><span class="step-number" aria-hidden="true">A</span><span class="path-tag">FASTER</span><h3>Quick Cut</h3><p class="path-line">One prompt. One finished reel.</p><p>You drop in your clip and write one prompt. Claude cuts it and adds captions and&nbsp;sound.</p><p class="path-best"><b>Best for</b> posting every day</p></div>
+          <div class="demo demo-quick" role="img" aria-label="Example: one prompt in Claude turns a raw clip into a finished, captioned reel.">
+            <div class="demo-bar"><i></i><i></i><i></i><span>Claude · Quick Cut</span></div>
+            <div class="demo-body">
+              <div class="demo-chat">
+                <div class="chat-user" data-reveal>
+                  <span class="chat-file"><b aria-hidden="true">▶</b>agency-clip.mov<em>0:48</em></span>
+                  <p>Turn this into a 30-second reel. Our brand fonts and colours, captions on, music under. Cut the pauses.</p>
+                </div>
+                <div class="chat-claude" data-reveal style="--delay:.2s">
+                  <span class="chat-name"><i aria-hidden="true">✳</i>Claude</span>
+                  <p>On it. Using your brand kit.</p>
+                  <ul class="demo-steps"><li data-reveal style="--delay:0.35s"><span class="demo-check" aria-hidden="true">✓</span>Cut 23 pauses and retakes</li><li data-reveal style="--delay:0.53s"><span class="demo-check" aria-hidden="true">✓</span>Added a hook in the first 2 seconds</li><li data-reveal style="--delay:0.71s"><span class="demo-check" aria-hidden="true">✓</span>Captions in your brand fonts</li><li data-reveal style="--delay:0.89s"><span class="demo-check" aria-hidden="true">✓</span>Music under your voice</li><li data-reveal style="--delay:1.07s"><span class="demo-check" aria-hidden="true">✓</span>Exported 1080 × 1920</li></ul>
+                  <p class="chat-done" data-reveal style="--delay:1.3s">Your reel is ready. <b>0:30</b></p>
+                </div>
+              </div>
+              <div class="demo-output demo-export"><span class="export-icon" aria-hidden="true">↗</span><strong>Reel ready</strong><span>1080 × 1920 · 0:30</span><small>Captions. Brand kit. Sound.</small></div>
+            </div>
+          </div>
+        </article>
+        <article class="path-row">
+          <div class="path-copy" data-reveal><span class="step-number" aria-hidden="true">B</span><span class="path-tag">MORE CONTROL</span><h3>Director’s Cut</h3><p class="path-line">Frame by frame. You decide every shot.</p><p>Claude splits your clip into beats. For each one you see the exact moment next to the planned visual. Approve it or tell Claude what to change. Nothing is built until you&nbsp;approve.</p><p class="path-best"><b>Best for</b> client work and brand ads</p></div>
+          <div class="demo demo-director" aria-label="Example: Claude plans the reel beat by beat. Each beat shows the moment next to the planned visual, and you approve it or ask for a change.">
+            <div class="demo-bar"><i></i><i></i><i></i><span>Claude · Director’s Cut</span></div>
+            <div class="beat-sheet">
+              <div class="bs-head">
+                <p class="bs-meta">PLAN · 11 BEATS · 20 S · <mark>NOTHING IS BUILT UNTIL YOU APPROVE</mark></p>
+                <h4>Agency owners · “Your editors aren’t using AI” · beat sheet</h4><p class="bs-hint">Try it: approve a beat, or press Change and tell Claude what you want.</p>
+                <div class="bs-timeline" aria-hidden="true"><i class="seg-a" style="flex:6"></i><i class="seg-y" style="flex:12"></i><i class="seg-a" style="flex:5"></i><i class="seg-b" style="flex:9"></i><i class="seg-a" style="flex:7"></i><i class="seg-y" style="flex:12"></i><i class="seg-a" style="flex:5"></i><i class="seg-y" style="flex:9"></i><i class="seg-y" style="flex:8"></i><i class="seg-y" style="flex:10"></i><i class="seg-b" style="flex:11"></i></div>
+                <div class="bs-status"><p><span><b data-tally="approved">2</b> approved</span><span><b data-tally="change">1</b> change</span><span><b data-tally="pending">1</b> pending</span></p><p class="bs-legend"><span class="lg-a">A-roll</span><span class="lg-y">Yellow slam</span><span class="lg-b">Blur + slam</span></p></div>
+              </div>
+              <div class="bs-list">
+                <div class="beat is-approved" data-beat data-kind="slam">
+                  <div class="beat-top"><span class="beat-id">B01 · 0:00</span><p>If your editors are not using AI to edit clips for your clients…</p></div>
+                  <div class="beat-frames">
+                    <figure><figcaption>HE SAYS (THIS MOMENT)</figcaption><img src="assets/omar-beat-01.jpg" alt="" loading="lazy"></figure>
+                    <figure><figcaption>PLANNED VISUAL</figcaption><img src="assets/omar-beat-02.jpg" alt="" loading="lazy"><span class="beat-kind">Yellow slam · “AI”</span></figure>
+                    <div class="beat-tools" aria-hidden="true"><span>↓ Save this image</span><span>↑ Upload yours</span><span>✎ Draw on it</span><span>✦ New idea</span></div>
+                  </div>
+                  <div class="beat-actions"><button type="button" class="beat-approve" aria-pressed="true">Approve</button><button type="button" class="beat-change" aria-pressed="false">Change</button><span class="beat-state"></span></div>
+                  <label class="beat-note"><span class="visually-hidden">What should change in beat 01?</span><textarea rows="2" placeholder="What should this beat be instead?"></textarea></label>
+                </div><div class="beat is-change" data-beat data-kind="blur">
+                  <div class="beat-top"><span class="beat-id">B03 · 0:05</span><p>…then essentially you’re losing time and money.</p></div>
+                  <div class="beat-frames">
+                    <figure><figcaption>HE SAYS (THIS MOMENT)</figcaption><img src="assets/omar-beat-03.jpg" alt="" loading="lazy"></figure>
+                    <figure><figcaption>PLANNED VISUAL</figcaption><img src="assets/omar-beat-04.jpg" alt="" loading="lazy"><span class="beat-kind">Blur + slam · “TIME”</span></figure>
+                    <div class="beat-tools" aria-hidden="true"><span>↓ Save this image</span><span>↑ Upload yours</span><span>✎ Draw on it</span><span>✦ New idea</span></div>
+                  </div>
+                  <div class="beat-actions"><button type="button" class="beat-approve" aria-pressed="false">Approve</button><button type="button" class="beat-change" aria-pressed="true">Change</button><span class="beat-state"></span></div>
+                  <label class="beat-note"><span class="visually-hidden">What should change in beat 03?</span><textarea rows="2" placeholder="What should this beat be instead?">Blur the background harder and add “& MONEY” as a second slam on the next word.</textarea></label>
+                </div><div class="beat is-approved" data-beat data-kind="slam">
+                  <div class="beat-top"><span class="beat-id">B05 · 0:08</span><p>We’re launching a workshop for editors and agency owners.</p></div>
+                  <div class="beat-frames">
+                    <figure><figcaption>HE SAYS (THIS MOMENT)</figcaption><img src="assets/omar-beat-05.jpg" alt="" loading="lazy"></figure>
+                    <figure><figcaption>PLANNED VISUAL</figcaption><img src="assets/omar-beat-06.jpg" alt="" loading="lazy"><span class="beat-kind">Yellow slam · “WORKSHOP”</span></figure>
+                    <div class="beat-tools" aria-hidden="true"><span>↓ Save this image</span><span>↑ Upload yours</span><span>✎ Draw on it</span><span>✦ New idea</span></div>
+                  </div>
+                  <div class="beat-actions"><button type="button" class="beat-approve" aria-pressed="true">Approve</button><button type="button" class="beat-change" aria-pressed="false">Change</button><span class="beat-state"></span></div>
+                  <label class="beat-note"><span class="visually-hidden">What should change in beat 05?</span><textarea rows="2" placeholder="What should this beat be instead?"></textarea></label>
+                </div><div class="beat is-pending" data-beat data-kind="blur">
+                  <div class="beat-top"><span class="beat-id">B11 · 0:19</span><p>Hurry up so you can benefit from early launch prices.</p></div>
+                  <div class="beat-frames">
+                    <figure><figcaption>HE SAYS (THIS MOMENT)</figcaption><img src="assets/omar-beat-07.jpg" alt="" loading="lazy"></figure>
+                    <figure><figcaption>PLANNED VISUAL</figcaption><img src="assets/omar-beat-08.jpg" alt="" loading="lazy"><span class="beat-kind">Blur + slam · “EARLY LAUNCH PRICES”</span></figure>
+                    <div class="beat-tools" aria-hidden="true"><span>↓ Save this image</span><span>↑ Upload yours</span><span>✎ Draw on it</span><span>✦ New idea</span></div>
+                  </div>
+                  <div class="beat-actions"><button type="button" class="beat-approve" aria-pressed="false">Approve</button><button type="button" class="beat-change" aria-pressed="false">Change</button><span class="beat-state"></span></div>
+                  <label class="beat-note"><span class="visually-hidden">What should change in beat 11?</span><textarea rows="2" placeholder="What should this beat be instead?"></textarea></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      </div>
+    </section>
+    <section class="made section" id="made" aria-labelledby="made-title">
+      <div class="section-top" data-reveal><span class="eyebrow">03 / MADE WITH CLAUDE</span></div>
+      <div class="section-heading"><h2 id="made-title" data-reveal><span class="heading-line">THESE REELS WERE</span><span class="heading-line accent">EDITED WITH AI.</span></h2><p data-reveal>Cut, captioned and scored with Claude. Real reels, coming&nbsp;soon.</p></div>
+      <div class="made-grid"><figure class="made-reel made-placeholder" data-reveal style="--delay:0.00s"><span class="made-num">01</span><figcaption><span class="made-play" aria-hidden="true">▷</span>Reel coming soon</figcaption></figure><figure class="made-reel made-placeholder" data-reveal style="--delay:0.08s"><span class="made-num">02</span><figcaption><span class="made-play" aria-hidden="true">▷</span>Reel coming soon</figcaption></figure><figure class="made-reel made-placeholder" data-reveal style="--delay:0.16s"><span class="made-num">03</span><figcaption><span class="made-play" aria-hidden="true">▷</span>Reel coming soon</figcaption></figure></div>
     </section>
     <section class="work section section-dark" id="work" aria-labelledby="work-title">
-      <div class="section-top" data-reveal><span class="eyebrow">02 / BUILT IN PRODUCTION</span></div>
-      <div class="section-heading"><h2 id="work-title" data-reveal><span class="heading-line">THOUSANDS OF EDITS.</span><span class="heading-line">ONE CLEAR METHOD.</span></h2><p data-reveal>We’ve edited thousands of videos as an agency. Our senior production team trained in AI, translated its know-how into skills and workflows, and packaged the method for this&nbsp;intensive.</p></div>
+      <div class="section-top" data-reveal><span class="eyebrow">04 / BUILT IN PRODUCTION</span></div>
+      <div class="section-heading"><h2 id="work-title" data-reveal><span class="heading-line">5 YEARS OF EDITING.</span><span class="heading-line accent">NOW PLUG AND PLAY.</span></h2><p data-reveal>Everything our senior editors know, turned into Claude skills you can use on day one. You start where they are, not from&nbsp;zero.</p></div>
+      <ul class="work-stats" aria-label="The Clips Agency in numbers"><li data-reveal style="--delay:0.0s"><strong><span data-count="200">200</span><i>+</i></strong><b>Experts</b><p>Coaches, founders and brands we edit reels for.</p></li><li data-reveal style="--delay:0.1s"><strong><span data-count="5000">5,000</span><i>+</i></strong><b>Videos</b><p>Edited, finished and posted by our team.</p></li><li data-reveal style="--delay:0.2s"><strong><span data-count="5">5</span><i>+</i></strong><b>Years</b><p>Of editing know-how, packed into plug-and-play skills.</p></li></ul>
       <div class="portfolio-ticker" tabindex="0" role="region" aria-label="The Clips Agency portfolio video ticker. Hover or focus to pause the moving strip."><div class="portfolio-track"><div class="portfolio-group"><div class="work-frame"><video src="assets/work-01.mp4" poster="assets/work-01.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 01"></video></div><div class="work-frame"><video src="assets/work-02.mp4" poster="assets/work-02.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 02"></video></div><div class="work-frame"><video src="assets/work-03.mp4" poster="assets/work-03.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 03"></video></div><div class="work-frame"><video src="assets/work-04.mp4" poster="assets/work-04.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 04"></video></div><div class="work-frame"><video src="assets/work-05.mp4" poster="assets/work-05.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 05"></video></div><div class="work-frame"><video src="assets/work-06.mp4" poster="assets/work-06.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 06"></video></div><div class="work-frame"><video src="assets/work-07.mp4" poster="assets/work-07.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 07"></video></div><div class="work-frame"><video src="assets/work-08.mp4" poster="assets/work-08.jpg" muted loop playsinline preload="none" aria-label="The Clips Agency portfolio excerpt 08"></video></div></div></div></div>
-      <div class="work-bottom"><p>The Clips Agency portfolio. The craft behind the method.</p><span>CREATIVE DIRECTION → EDITING → FINISHING</span></div>
+      <div class="work-bottom"><p>Real reels from The Clips Agency. The craft behind every skill.</p><span>CREATIVE DIRECTION → EDITING → FINISHING</span></div>
     </section>
     <section class="tickets section section-dark" id="tickets" aria-labelledby="tickets-title">
-      <div class="section-top" data-reveal><span class="eyebrow">03 / YOUR SEAT</span><span class="small">One ticket. Three intensive hours.</span></div>
+      <div class="section-top" data-reveal><span class="eyebrow">05 / YOUR SEAT</span><span class="small">One ticket. Three intensive hours.</span></div>
       <div class="ticket-layout">
         <div class="ticket-copy"><h2 id="tickets-title" data-reveal><span class="heading-line">BOOK EARLIER.</span><span class="heading-line">PAY LESS.</span></h2><p data-reveal>Get the process behind the polish.<br>The same intensive at every&nbsp;price.</p>
           <ol class="price-ladder" aria-label="Ticket prices" hidden>
