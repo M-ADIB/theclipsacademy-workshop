@@ -20,8 +20,9 @@
   <title>The Clips Academy | AI Editing Intensive</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preload" href="assets/polysans.woff" as="font" type="font/woff" crossorigin>
-  <link rel="stylesheet" href="style.css?v=bilingual-1">
-  <script src="app.js?v=bilingual-1" defer></script>
+  <link rel="stylesheet" href="style.css?v=claude-workflow-1">
+  <link rel="stylesheet" href="workflow.css?v=claude-workflow-1">
+  <script src="app.js?v=claude-workflow-1" defer></script>
   <script type="module" src="features/pricing/storefront.mjs?v=bilingual-1"></script>
 </head>
 <body>
@@ -53,19 +54,31 @@
     </section>
     <section class="method section" id="method" aria-labelledby="method-title">
       <div class="section-top"><span class="eyebrow">01 / HOW IT WORKS</span></div>
-      <div class="section-heading"><h2 id="method-title"><span class="heading-line">A BETTER VIDEO.</span><span class="heading-line accent">THREE SIMPLE STEPS.</span></h2><p>From your first idea to a video you’re proud to share.</p></div>
-      <div class="method-overview">
-        <ol class="method-steps" aria-label="Three steps to a finished video">
-          <li><span class="step-number" aria-hidden="true">01</span><div><h3>Plan your video.</h3><p>Choose your idea and the look you want.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">02</span><div><h3>Edit with AI.</h3><div class="step-tools" aria-label="Claude &amp; ChatGPT"><span><img src="assets/claude-spark.svg" width="18" height="18" alt=""><bdi lang="en">Claude</bdi></span><span><img src="assets/chatgpt-symbol.svg" width="18" height="18" alt=""><bdi lang="en">ChatGPT</bdi></span></div><p>Tell AI what you need. Put the clips, words, and sound together.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">03</span><div><h3>Check and share.</h3><p>Watch it back. Fix the small things. Share your video.</p></div></li>
-        </ol>
-        <figure class="method-result">
-
-              <div class="result-reel"><video id="result-video" src="assets/work-01.mp4" poster="assets/work-01.jpg" muted loop playsinline controls preload="none" aria-label="An actual edited reel from The Clips Agency portfolio"></video><button class="result-control" aria-label="Play agency reel" aria-pressed="false" hidden><span aria-hidden="true">▷</span></button></div>
-              <figcaption><span class="eyebrow">FROM THE CLIPS AGENCY</span><strong>See the finished video.</strong></figcaption>
-            </figure>
-      </div>
+      <div class="section-heading"><h2 id="method-title"><span class="heading-line">YOU FILM IT.</span><span class="heading-line accent">CLAUDE EDITS IT.</span></h2><p>Your footage, with the right prompt, tools, and assets. Claude handles the full edit.</p></div>
+      <ol class="edit-workflow" aria-label="From your recording to a finished reel with Claude">
+        <li class="workflow-stage workflow-capture">
+          <div class="workflow-step"><span class="workflow-number" aria-hidden="true">01</span><h3>Film yourself.</h3></div>
+          <div class="workflow-scene" role="img" aria-label="Illustration of filming yourself on a phone">
+            <div class="recording-phone"><div class="recording-screen"><div class="recording-meta"><span><i></i>REC</span><span>00:15</span></div><svg class="capture-person" viewBox="0 0 180 260" fill="none" aria-hidden="true"><path d="M19 260v-43c0-35 30-61 71-61s71 26 71 61v43" fill="#232322"/><path d="M72 137h36v36c-11 12-26 12-36 0v-36Z" fill="#b9987f"/><ellipse cx="90" cy="103" rx="39" ry="50" fill="#d9b79c"/><path d="M51 104V82c0-30 16-47 42-47 24 0 38 15 38 37v27l-13-29c-16 10-35 13-54 10l-13 24Z" fill="#232322"/><path d="M73 107h6m23 0h6M82 130c5 4 11 4 16 0" stroke="#4a372d" stroke-width="3" stroke-linecap="round"/><path d="m86 108-3 13h7" stroke="#b38d72" stroke-width="2" stroke-linecap="round"/><path d="M47 237h86" stroke="#eeeeec" stroke-opacity=".1" stroke-width="2"/></svg><div class="capture-focus"></div><div class="capture-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="recording-shutter"><span></span></div></div></div>
+          </div>
+          <p class="workflow-caption">Your camera. Your phone. Your ideas.</p><span class="workflow-connector" aria-hidden="true"><i></i><b>→</b></span>
+        </li>
+        <li class="workflow-stage workflow-claude">
+          <div class="workflow-step"><span class="workflow-number" aria-hidden="true">02</span><h3>Send it to Claude.</h3></div>
+          <div class="workflow-scene"><div class="claude-workbench" role="img" aria-label="Your footage, prompt, tools, and assets come together in Claude">
+            <div class="workflow-appbar"><img src="assets/claude-logo.svg" width="106" height="29" alt="Claude"><span aria-hidden="true">···</span></div>
+            <div class="workflow-upload"><span class="upload-play" aria-hidden="true">▷</span><span><strong>your-footage.mp4</strong><small>Your footage, attached</small></span><span class="upload-check" aria-hidden="true">✓</span></div>
+            <div class="workflow-engine"><span class="engine-line" aria-hidden="true"></span><img src="assets/clawd.svg" width="100" height="100" alt=""><span class="engine-line" aria-hidden="true"></span></div>
+            <div class="workflow-inputs"><span class="workflow-input workflow-input-prompt"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="m7 9 5 5-5 5M15 19h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Prompt</span></span><span class="workflow-input workflow-input-tools"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="m10 10 12 12M10 18 22 6M17 17l-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7" cy="7" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="21" r="4" stroke="currentColor" stroke-width="1.6"/></svg><span>Tools</span></span><span class="workflow-input workflow-input-assets"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="7" y="4" width="17" height="17" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M4 9v12a3 3 0 0 0 3 3h12m-9-9 4-4 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="9" r="1.5" fill="currentColor"/></svg><span>Assets</span></span></div>
+            <div class="workflow-edit-label"><span class="live-dot" aria-hidden="true"></span>One complete, on-brand edit</div>
+          </div></div>
+          <p class="workflow-caption">Give it everything it needs to edit.</p><span class="workflow-connector" aria-hidden="true"><i></i><b>→</b></span>
+        </li>
+        <li class="workflow-stage workflow-finish">
+          <div class="workflow-step"><span class="workflow-number" aria-hidden="true">03</span><h3>Get your finished reel.</h3></div>
+          <figure class="method-result"><div class="workflow-scene"><div class="result-reel"><video id="result-video" src="assets/work-01.mp4" poster="assets/work-01.jpg" muted loop playsinline controls preload="none" aria-label="An actual edited reel from The Clips Agency portfolio"></video><button class="result-control" aria-label="Play agency reel" aria-pressed="false" hidden><span aria-hidden="true">▷</span></button></div></div><figcaption><p class="workflow-caption">Cuts, captions, and sound. All together.</p><span class="workflow-example">EXAMPLE FROM THE CLIPS AGENCY</span></figcaption></figure>
+        </li>
+      </ol>
     </section>
     <section class="work section section-dark" id="work" aria-labelledby="work-title">
       <div class="section-top" data-reveal><span class="eyebrow">02 / BUILT IN PRODUCTION</span></div>
