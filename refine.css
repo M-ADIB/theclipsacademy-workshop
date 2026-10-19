@@ -29,10 +29,6 @@
 .editing-paths{margin-top:46px;padding-top:34px}
 .paths-heading{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .paths-heading h2{font-size:clamp(22px,2.2vw,34px);line-height:1.2;letter-spacing:-.02em}
-.path-switch{display:flex;border:1px solid #09090924;border-radius:30px;padding:4px;gap:4px;flex-shrink:0}
-.path-switch[hidden],.path-row[hidden]{display:none}
-.path-switch button{font-size:12px;min-height:40px;padding:9px 17px;border-radius:24px;background:transparent;color:var(--muted);transition:background .2s,color .2s}
-.path-switch button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .path-rows{margin-top:24px}
 .path-row{grid-template-columns:minmax(180px,.55fr) minmax(0,1.5fr);gap:35px;align-items:start}
 .path-copy{border:0;background:none;padding:20px 0;border-radius:0;position:relative}
@@ -49,7 +45,7 @@ html[lang="ar"] .hero .hero-subheading{font-size:20px;line-height:1.8}
 html[lang="ar"] .hero .hero-event{font-size:15px}html[lang="ar"] .hero .hero-language{font-size:15px}
 html[lang="ar"] .companion-chip{font-size:16px}
 html[lang="ar"] .method .section-heading h2,html[lang="ar"] .work .section-heading h2{font-size:clamp(32px,4vw,58px);line-height:1.5}
-html[lang="ar"] .paths-heading h2{font-size:30px;line-height:1.6}html[lang="ar"] .path-switch button{font-size:15px}
+html[lang="ar"] .paths-heading h2{font-size:30px;line-height:1.6}
 html[lang="ar"] .path-copy h3{font-size:27px}html[lang="ar"] .path-copy p{font-size:17px}
 html[lang="ar"] .work-stats li{padding-block:20px 6px}html[lang="ar"] .work-stats b{font-size:14px}
 @media(max-width:1000px){.hero-layout{grid-template-columns:minmax(0,1.6fr) minmax(170px,.7fr);gap:22px;padding-block:45px}.hero h1{font-size:5.9vw}.hero .hero-copy .hero-subheading{font-size:16px}.companion-chip{font-size:10px;padding:8px 10px}.path-row{grid-template-columns:1fr}.path-copy{padding:0;display:block;padding-inline-end:85px}.path-copy p{max-width:580px}.path-character{position:absolute;inset-inline-end:0;top:0;width:58px;height:58px;margin:0}}
@@ -62,13 +58,13 @@ html[lang="ar"] .work-stats li{padding-block:20px 6px}html[lang="ar"] .work-stat
  .hero .hero-details{margin-top:24px;padding-inline-end:65px}.hero .hero-event{font-size:10px;line-height:1.7}.hero .hero-language{font-size:10px;line-height:1.6}
  .hero .word-track>span{font-size:17px}.hero .word-ticker{padding-block:9px}
  .method{padding-block:38px}.method .section-heading h2,.work .section-heading h2{font-size:7.9vw}.method>.section-heading{margin-bottom:28px}
- .editing-paths{margin-top:35px;padding-top:28px}.paths-heading{display:block}.paths-heading h2{font-size:24px}.path-switch{margin-top:17px;width:fit-content}.path-switch button{font-size:12px;padding-inline:16px}
+ .editing-paths{margin-top:35px;padding-top:28px}.paths-heading{display:block}.paths-heading h2{font-size:24px}
  .path-rows{margin-top:22px;gap:22px}.path-row{gap:20px}.path-copy h3{font-size:22px}.path-copy p{font-size:13px}.path-character{width:46px;height:46px}.path-copy{padding-inline-end:60px}.beat-sheet{max-height:540px}
  .work{padding-block:38px 28px}.work-stats{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:24px}.work-stats li,.work-stats li+li{padding:18px 8px 4px;border:0}.work-stats li+li{border-inline-start:1px solid #ffffff26}.work-stats li:first-child{padding-inline-start:0}.work-stats strong{font-size:36px}.work-stats b{font-size:8px;line-height:1.5;letter-spacing:.02em;margin-top:9px}
  html[lang="ar"] .hero h1{font-size:9vw;line-height:1.5}.hero-logo-line{margin-top:0}html[lang="ar"] .hero .headline-claude{width:3.7em}
  html[lang="ar"] .hero .hero-subheading{font-size:17px;line-height:1.85}html[lang="ar"] .hero .hero-event,html[lang="ar"] .hero .hero-language{font-size:12px}
  html[lang="ar"] .method .section-heading h2,html[lang="ar"] .work .section-heading h2{font-size:7.7vw}
- html[lang="ar"] .paths-heading h2{font-size:25px}html[lang="ar"] .path-switch button{font-size:14px}html[lang="ar"] .path-copy h3{font-size:24px}html[lang="ar"] .path-copy p{font-size:15px}
+ html[lang="ar"] .paths-heading h2{font-size:25px}html[lang="ar"] .path-copy h3{font-size:24px}html[lang="ar"] .path-copy p{font-size:15px}
  html[lang="ar"] .work-stats li,html[lang="ar"] .work-stats li+li{padding:18px 8px 4px;border:0}html[lang="ar"] .work-stats li+li{border-inline-start:1px solid #ffffff26}html[lang="ar"] .work-stats b{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.hero-companion *{animation:none!important}}
@@ -82,3 +78,7 @@ html[lang="ar"] .work-stats li{padding-block:20px 6px}html[lang="ar"] .work-stat
 .companion-chatgpt{width:27%;height:auto;filter:brightness(0) invert(1);opacity:.95}
 .motion .hero-companion.is-visible .companion-chatgpt{animation:clawd-bob 5s ease-in-out -2s infinite}
 @media(max-width:760px){.hero-companion{width:110px;max-width:110px;justify-self:end;aspect-ratio:1.45;margin-bottom:48px}.companion-pair{gap:7%}.companion-pair .companion-clawd{width:60%}.companion-chatgpt{width:29%}}
+
+/* Both editing approaches remain visible in reading order. */
+.path-rows{gap:38px}.path-row+.path-row{padding-top:34px;border-top:1px solid var(--line)}
+@media(max-width:760px){.path-rows{gap:28px}.path-row+.path-row{padding-top:28px}}
