@@ -82,3 +82,13 @@ html[lang="ar"] .work-stats li{padding-block:20px 6px}html[lang="ar"] .work-stat
 /* Both editing approaches remain visible in reading order. */
 .path-rows{gap:38px}.path-row+.path-row{padding-top:34px;border-top:1px solid var(--line)}
 @media(max-width:760px){.path-rows{gap:28px}.path-row+.path-row{padding-top:28px}}
+
+/* Keep agency figures and their labels readable on narrow phones. */
+@media(max-width:760px){
+ .work-stats{grid-template-columns:minmax(0,1fr)}
+ .work-stats li,.work-stats li+li,
+ html[lang="ar"] .work-stats li,html[lang="ar"] .work-stats li+li{display:flex;align-items:center;gap:20px;min-width:0;padding:16px 0;border:0;border-bottom:1px solid #ffffff26}
+ .work-stats strong{flex:0 0 110px;font-size:40px;white-space:nowrap}
+ .work-stats b,html[lang="ar"] .work-stats b{flex:1;min-width:0;margin:0;font-size:12px;line-height:1.5;letter-spacing:.02em}
+ html[lang="ar"] .work-stats b{font-size:14px;letter-spacing:0}
+}
