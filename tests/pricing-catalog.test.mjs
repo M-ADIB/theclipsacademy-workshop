@@ -11,7 +11,7 @@ for (const [time, stage, amount] of [
 ]) test(`server catalog uses correct Dubai stage at ${time}`, () => assert.equal(validateCatalog(catalog(time, stage, amount)).stage.code, stage));
 test('no ticket price is displayed before launch or after the campaign', () => {
   assert.throws(() => validateCatalog(catalog('2026-10-16T15:17:59Z', 'early', 4700)));
-  assert.throws(() => validateCatalog(catalog('2026-10-30T20:00:00Z', 'final', 9700)));
+  assert.throws(() => validateCatalog(catalog('2026-11-01T14:31:00Z', 'final', 4700)));
   assert.equal(validateCatalog({status:'prelaunch',server_time:'2026-10-16T15:17:59Z'}).status,'prelaunch');
 });
 test('stale stage, old prices, wrong currency and malformed catalogs fail closed', () => {
@@ -20,4 +20,13 @@ test('stale stage, old prices, wrong currency and malformed catalogs fail closed
 
 test('incomplete backend setup does not advertise an available checkout', () => {
   assert.throws(() => validateCatalog({...catalog('2026-10-18T06:00:00Z','early',4700),setup_ready:false}));
+});
+
+test('extended $47 offer closes new checkout at 6pm Dubai', () => {
+  const open=validateCatalog(catalog('2026-11-01T13:59:59Z','final',4700));
+  assert.equal(open.stage.amount,4700);
+  assert.equal(open.deadline,'2026-11-01T14:00:00.000Z');
+  const paused=validateCatalog({...catalog('2026-11-01T14:00:01Z','final',4700),checkout_available:false,checkout_pause_reason:'boundary_near'});
+  assert.equal(paused.status,'paused');
+  assert.equal(paused.resumes,null);
 });
