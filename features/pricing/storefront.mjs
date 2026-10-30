@@ -1,6 +1,6 @@
-import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=funnel-1';
+import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=sunday-47';
 import { mountCountdown } from './countdown.mjs?v=bilingual-1';
-import { pricingCopy } from './copy.mjs?v=funnel-1';
+import { pricingCopy } from './copy.mjs?v=sunday-47';
 
 const copy = pricingCopy(document.documentElement.lang);
 
@@ -65,8 +65,9 @@ async function refresh() {
       price.classList.remove('is-pending');
       price.querySelector(':scope>span').textContent = `$${catalog.stage.amount / 100}`;
       price.querySelector('b').textContent = copy.stages[catalog.stage.code];
+      ladder.querySelector('[data-stage=final] .price-bar span').textContent = `$${catalog.stage.code === 'final' ? catalog.stage.amount / 100 : STAGES[2].amount / 100}`;
       ladder.querySelectorAll('li').forEach(item => item.classList.toggle('current', item.dataset.stage === catalog.stage.code));
-      ladder.setAttribute('aria-label', copy.prices(STAGES, catalog.stage.amount));
+      ladder.setAttribute('aria-label', copy.prices(STAGES.map(stage => stage.code === catalog.stage.code ? catalog.stage : stage), catalog.stage.amount));
       note.textContent = `${copy.ticketOnly} ${copy.checkoutCutoff}`;
       renderCountdown(catalog.deadline, catalog.stage.code === 'final' ? copy.campaignCountdown : copy.increaseCountdown(catalog.stage.amount), catalog.stage.code === 'final' ? copy.campaignEnded : copy.updating, catalog.serverNow);
       const og = document.querySelector('meta[property="og:description"]');
