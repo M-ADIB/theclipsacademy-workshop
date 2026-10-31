@@ -2,7 +2,6 @@ export const CATALOG_URL = 'https://wsozuygcqgrhcczacjul.supabase.co/functions/v
 export const CHECKOUT_URL = 'https://os.theclips.academy/workshop/checkout';
 export const OPENS_AT = '2026-10-16T19:18:00+04:00';
 export const CAMPAIGN_END = '2026-11-01T18:31:00+04:00';
-const LEGACY_FINAL_END = '2026-10-31T00:00:00+04:00';
 const DISCOUNT_START = '2026-10-30T00:00:00+04:00';
 export const STAGES = [
   { code: 'early', amount: 4700, end: '2026-10-23T00:00:00+04:00', label: 'Early booking price' },
@@ -24,9 +23,6 @@ export function validateCatalog(raw) {
   let stage = STAGES.find(s => serverNow < Date.parse(s.end));
   if (stage?.code === 'final' && raw.ticket_amount === 4700 && serverNow >= Date.parse(DISCOUNT_START)) {
     stage = { ...stage, amount: 4700 };
-  } else if (stage?.code === 'final' && raw.ticket_amount === 9700) {
-    stage = { ...stage, end: LEGACY_FINAL_END };
-    if (serverNow >= Date.parse(stage.end)) stage = null;
   }
   if (serverNow < Date.parse(OPENS_AT) || !stage || raw.stage !== stage.code || raw.ticket_amount !== stage.amount || raw.currency !== 'usd') {
     throw new Error('Pricing is being updated.');
