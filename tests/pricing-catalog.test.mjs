@@ -30,3 +30,12 @@ test('extended $47 offer closes new checkout at 6pm Dubai', () => {
   assert.equal(paused.status,'paused');
   assert.equal(paused.resumes,null);
 });
+
+test('restored $97 final offer uses the same Sunday cutoff', () => {
+  const open = validateCatalog(catalog('2026-10-31T08:00:00Z','final',9700));
+  assert.equal(open.stage.amount,9700);
+  assert.equal(open.deadline,'2026-11-01T14:00:00.000Z');
+  const paused = validateCatalog({...catalog('2026-11-01T14:00:01Z','final',9700),checkout_available:false,checkout_pause_reason:'boundary_near'});
+  assert.equal(paused.status,'paused');
+  assert.equal(paused.resumes,null);
+});

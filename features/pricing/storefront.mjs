@@ -1,4 +1,4 @@
-import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=sunday-47';
+import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=restore-97';
 import { mountCountdown } from './countdown.mjs?v=bilingual-1';
 import { pricingCopy } from './copy.mjs?v=sunday-47';
 
