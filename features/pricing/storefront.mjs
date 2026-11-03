@@ -1,6 +1,6 @@
-import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=restore-97';
+import { CATALOG_URL, CHECKOUT_URL, STAGES, validateCatalog } from './catalog.mjs?v=nov28-2026';
 import { mountCountdown } from './countdown.mjs?v=bilingual-1';
-import { pricingCopy } from './copy.mjs?v=sunday-47';
+import { pricingCopy } from './copy.mjs?v=nov28-2026';
 
 const copy = pricingCopy(document.documentElement.lang);
 
@@ -65,7 +65,7 @@ async function refresh() {
       price.classList.remove('is-pending');
       price.querySelector(':scope>span').textContent = `$${catalog.stage.amount / 100}`;
       price.querySelector('b').textContent = copy.stages[catalog.stage.code];
-      ladder.querySelector('[data-stage=final] .price-bar span').textContent = `$${catalog.stage.code === 'final' ? catalog.stage.amount / 100 : STAGES[2].amount / 100}`;
+      ladder.querySelector('[data-stage=final] .price-bar span').textContent = `$${catalog.stage.code === 'final' ? catalog.stage.amount / 100 : STAGES[3].amount / 100}`;
       ladder.querySelectorAll('li').forEach(item => item.classList.toggle('current', item.dataset.stage === catalog.stage.code));
       ladder.setAttribute('aria-label', copy.prices(STAGES.map(stage => stage.code === catalog.stage.code ? catalog.stage : stage), catalog.stage.amount));
       note.textContent = `${copy.ticketOnly} ${copy.checkoutCutoff}`;

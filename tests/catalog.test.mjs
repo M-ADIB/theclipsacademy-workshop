@@ -1,11 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validateCatalog} from '../features/pricing/catalog.mjs';
-const catalog=(server_time,stage,ticket_amount)=>({status:'open',server_time,stage,ticket_amount,currency:'usd',setup_ready:true,checkout_available:true});
-
-test('last 31 minutes show an accurate pause without changing ticket amounts or deadlines',()=>{
- for(const [time,stage,amount] of [['2026-10-22T19:30:00Z','early',4700],['2026-10-26T19:30:00Z','standard',6700],['2026-11-01T14:00:01Z','final',9700]]) {
-  const result=validateCatalog({...catalog(time,stage,amount),checkout_available:false,checkout_pause_reason:'boundary_near'});
-  assert.equal(result.status,'paused');assert.equal(result.stage.amount,amount);assert.equal(Boolean(result.resumes),stage!=='final');
- }
+import { validateCatalog } from '../features/pricing/catalog.mjs';
+test('checkout remains open until the price boundary', () => {
+  const result = validateCatalog({ status: 'open', server_time: '2026-11-06T04:59:59Z', opens_at: '2026-11-03T05:00:00Z', registration_closes_at: '2026-11-28T14:00:00Z', stage: 'launch', stage_ends_at: '2026-11-06T05:00:00Z', ticket_amount: 2400, currency: 'usd', setup_ready: true, checkout_available: true });
+  assert.equal(result.stage.amount, 2400);
+  assert.equal(result.deadline, '2026-11-06T05:00:00.000Z');
 });
