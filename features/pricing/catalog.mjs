@@ -1,34 +1,32 @@
 export const CATALOG_URL = 'https://wsozuygcqgrhcczacjul.supabase.co/functions/v1/workshop-catalog';
 export const CHECKOUT_URL = 'https://os.theclips.academy/workshop/checkout';
-export const OPENS_AT = '2026-10-16T19:18:00+04:00';
-export const CAMPAIGN_END = '2026-11-01T18:31:00+04:00';
-const DISCOUNT_START = '2026-10-30T00:00:00+04:00';
 export const STAGES = [
-  { code: 'early', amount: 4700, end: '2026-10-23T00:00:00+04:00', label: 'Early booking price' },
-  { code: 'standard', amount: 6700, end: '2026-10-27T00:00:00+04:00', label: 'Standard price' },
-  { code: 'final', amount: 9700, end: CAMPAIGN_END, label: 'Final booking price' }
+  { code: 'launch', amount: 2400 },
+  { code: 'early', amount: 4600 },
+  { code: 'standard', amount: 6800 },
+  { code: 'final', amount: 8800 },
 ];
 
 export function validateCatalog(raw) {
-  if (!raw || !['prelaunch', 'open', 'unavailable'].includes(raw.status) || !Number.isFinite(Date.parse(raw.server_time))) {
-    throw new Error('Pricing is temporarily unavailable.');
-  }
-  const serverNow = Date.parse(raw.server_time);
+  if (!raw || !['prelaunch', 'open', 'unavailable'].includes(raw.status)) throw new Error('Pricing is temporarily unavailable.');
+  const now = Date.parse(raw.server_time);
+  const start = Date.parse(raw.opens_at);
+  const close = Date.parse(raw.registration_closes_at);
+  const earlyEnd = start + 72 * 3600_000;
+  if (![now, start, close].every(Number.isFinite) || close <= earlyEnd) throw new Error('Pricing is being updated.');
   if (raw.status === 'prelaunch') {
-    if (serverNow >= Date.parse(OPENS_AT)) throw new Error('Pricing is being updated.');
-    return { status: 'prelaunch', serverNow, deadline: OPENS_AT };
+    if (now >= start) throw new Error('Pricing is being updated.');
+    return { status: 'prelaunch', serverNow: now, deadline: raw.opens_at };
   }
-  if (raw.status === 'open' && raw.setup_ready !== true) throw new Error('Checkout is temporarily unavailable.');
-  if (raw.status === 'unavailable') return { status: 'unavailable', serverNow };
-  let stage = STAGES.find(s => serverNow < Date.parse(s.end));
-  if (stage?.code === 'final' && raw.ticket_amount === 4700 && serverNow >= Date.parse(DISCOUNT_START)) {
-    stage = { ...stage, amount: 4700 };
+  if (raw.status === 'unavailable') {
+    if (now < close) throw new Error('Pricing is being updated.');
+    return { status: 'unavailable', serverNow: now };
   }
-  if (serverNow < Date.parse(OPENS_AT) || !stage || raw.stage !== stage.code || raw.ticket_amount !== stage.amount || raw.currency !== 'usd') {
-    throw new Error('Pricing is being updated.');
-  }
-  const boundaryNear=serverNow>Date.parse(stage.end)-31*60000;
-  if(!boundaryNear && raw.checkout_available!==true)throw new Error('Checkout is temporarily unavailable.');
-  const deadline = boundaryNear ? stage.end : new Date(Date.parse(stage.end) - 31 * 60000).toISOString();
-  return { status: boundaryNear?'paused':'open', serverNow, stage, deadline, resumes:stage.code==='final'?null:stage.end };
+  const remaining = close - earlyEnd;
+  const ends = [earlyEnd, earlyEnd + Math.floor(remaining / 3), earlyEnd + Math.floor(remaining * 2 / 3), close];
+  const index = ends.findIndex(end => now < end);
+  const stage = STAGES[index];
+  if (now < start || !stage || raw.stage !== stage.code || raw.ticket_amount !== stage.amount || raw.currency !== 'usd' || Date.parse(raw.stage_ends_at) !== ends[index]) throw new Error('Pricing is being updated.');
+  if (raw.setup_ready !== true || raw.checkout_available !== true) throw new Error('Checkout is temporarily unavailable.');
+  return { status: 'open', serverNow: now, stage, deadline: new Date(ends[index]).toISOString() };
 }

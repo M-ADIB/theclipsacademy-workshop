@@ -42,7 +42,7 @@ test('every price stage and countdown unit has Arabic copy without changing amou
   assert.deepEqual(Object.keys(copy.units), ['days', 'hours', 'minutes', 'seconds']);
   const messages = [...Object.values(copy).filter(v => typeof v === 'string'), ...Object.values(copy.units)];
   assert.ok(messages.every(message => /[\u0600-\u06ff]/.test(message) && !/[A-Za-z]/.test(message)));
-  assert.equal(pricingCopy('en').stages.early, STAGES[0].label);
+  assert.equal(pricingCopy('en').stages.launch, 'Launch offer');
 });
 
 test('all language metadata points to the matching canonical and alternate pages', () => {
