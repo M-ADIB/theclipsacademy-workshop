@@ -1,0 +1,5 @@
+.vsl{padding-top:62px;padding-bottom:62px}
+.vsl .section-heading h2{font-size:clamp(36px,4.8vw,78px)}
+.vsl-frame{margin:0;width:100%;max-width:1000px;border-radius:24px;overflow:hidden;background:var(--ink);box-shadow:0 18px 40px #00000018}
+.vsl-video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--ink)}
+@media(max-width:760px){.vsl{padding-top:38px;padding-bottom:38px}.vsl .section-heading h2{font-size:8vw}.vsl-frame{border-radius:16px}}
